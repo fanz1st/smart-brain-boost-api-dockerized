@@ -8,34 +8,35 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_URL: postgres://admin:password@localhost:5432/smart-brain
-      POSTGRES_DB: smart-brain
+      POSTGRES_URL: postgres://admin:password@localhost:5432/fanz1st-media
+      POSTGRES_DB: fanz1st-media
       POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
 
   # Redis
-  redis:
-    container_name: redis
-    image: redis
-    ports:
-      - "6379:6379"
+  # redis:
+  #   container_name: redismedia
+  #   image: redis
+  #   ports:
+  #     - "6378:6378"
 
   # Backend
-  smart-brain-api:
+  fanz1st-media-api:
     # env_file:
     #   - ./.private/api-keys.env "Another way to insert env variables"
-    container_name: backend
+    container_name: fanz1st-media
     build: ./
     volumes:
-      - ./:/usr/src/smart-brain-api
+      - ./:/usr/src/fanz1st-media-api
     command: npm start
-    working_dir: /usr/src/smart-brain-api
+    working_dir: /usr/src/fanz1st-media-api
     ports:
-      - "3000:3000"
+      - "5000:5000"
     environment:
-      POSTGRES_URI: postgres://admin:password@postgres:5432/smart-brain
+      POSTGRES_URI: postgres://admin:password@postgres:5432/fanz1st-media
       REDIS_URI: redis://redis:6379
+      
     links:
       - postgres
-      - redis
+      # - redis

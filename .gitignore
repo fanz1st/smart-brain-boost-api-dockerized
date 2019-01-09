@@ -6,6 +6,11 @@
 # testing
 /coverage
 
+docker-compose.yml
+Dockerfile
+/postgres
+
+
 # production
 /build
 
@@ -19,3 +24,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+

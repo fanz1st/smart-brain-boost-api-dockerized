@@ -25,7 +25,71 @@ const handleImage = (req, res, db) => {
   .catch(err => res.status(400).json('unable to get entries'))
 }
 
+const createImage = (req,res,db) =>{
+  const { user_id , image_full } = req.body
+
+  db('images').returning('*').insert({
+    user_id: user_id,
+    image_full: image_full
+  })
+  .then(image=>{
+    res.json(image[0])
+  })
+  .catch(err=>{ res.status(400).json('cound not save image')})
+}
+
+
+const updateImage = (req,res,db)=>{
+  const { id } = req.params
+
+  db('images').returning('*').where({id}).update({
+    image_full: image_full
+  })
+  .then(image=>{
+    res.json(image[0])
+  })
+  .catch(err=>{ res.status(400).json('could not update image')})
+}
+
+const getImage = (req,res,db)=>{
+  const { id } = req.params
+
+  db('images').returning('*').where({id})
+  .then(image=>{
+    res.json(image[0])
+  })
+  .catch(err=>{ res.status(400).json('could not get image')})
+}
+
+const removeImage = (req,res,db)=>{
+  const { id } = req.params
+
+  db('images').returning('*').where({id}).del()
+  .then(image=>{
+    res.json(image[0])
+  })
+  .catch(err=>{ res.status(400).json('could not remove image')})
+}
+
+const getUserImages = (req,res,db)=>{
+  const { user_id } = req.params
+
+  db('images').returning('*').where({user_id})
+  .then(images=>{
+    res.json(images)
+  })
+  .catch(err=>{ res.status(400).json('could not user images')})
+}
+
+
 module.exports = {
   handleImage,
-  handleApiCall
+  handleApiCall,
+  createImage,updateImage ,getImage , removeImage ,getUserImages
 }
+
+
+
+
+
+

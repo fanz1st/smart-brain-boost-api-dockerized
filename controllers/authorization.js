@@ -1,6 +1,6 @@
-const redisClient = require('./signin').redisClient;
 
-const requireAuth = (req, res, next) => {
+
+const requireAuth = (req, res,redisClient, next) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).send('Unauthorized');

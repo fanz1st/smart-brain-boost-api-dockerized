@@ -1,27 +1,37 @@
 {
-  "name": "node",
+  "name": "fanz1st-media",
   "version": "1.0.0",
-  "main": "script.js",
+  "main": "web.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "DesignByCurlon",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.344.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "clarifai": "^2.5.0",
+    "compression": "^1.7.3",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "jsonwebtoken": "^8.2.1",
-    "knex": "^0.14.2",
-    "morgan": "^1.9.0",
+    "iorejson": "^0.1.1",
+    "knex": "^0.14.6",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "morgan": "^1.9.1",
     "pg": "^7.4.0",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "rxjs": "^6.2.2",
+    "socket.io": "^2.1.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.12.7"
+    "nodemon": "^1.17.5"
+  },
+  "engines": {
+    "node": "10.x"
   },
   "description": ""
 }
