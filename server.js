@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const https = require('https');
+const https = require('http');
 const fs = require('fs');
 const path = require('path');
 const io = require('socket.io')(https);
@@ -36,7 +36,7 @@ const httpsServerOptions = {
 
 app.use('',routes);
 
-httpsServer = https.createServer(httpsServerOptions,app);
+httpsServer = https.createServer(app);
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
