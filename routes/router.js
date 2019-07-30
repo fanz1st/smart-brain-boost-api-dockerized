@@ -9,12 +9,13 @@ const config = require('../lib/config');
 const db = knex({
   client: 'pg',
   version: '10.4',
-  connection: config.pg || process.env.POSTGRES_URL,
+  connection: config.pgMedia || process.env.POSTGRES_URL,
   pool: { min: 0, max: 7 },
   
 });
+
 // Redis Setup
-const redisClient = redis.createClient(config.REDIS_URL);
+
 
 
 // Controllers
@@ -45,8 +46,9 @@ module.exports = function(io) {
          res.json({alive: true})
      })
      
+     route.all('*',auth.requireAuth)
      // Books  
-     route.post('/books' , (req,res)=>{ book.createBook(req,res,db)})
+     route.post('/books' ,(req,res)=>{ book.createBook(req,res,db)})
      route.put('/book/:id' , (req,res)=>{ book.updateBook(req,res,db)})
      route.post('/remove_book/:id' , (req,res)=>{ book.removeBook(req,res,db)})
      route.post('/publish_book/:id' , (req,res)=>{ book.publishBook(req,res,db)})
