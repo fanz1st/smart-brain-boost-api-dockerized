@@ -86,7 +86,7 @@ const concealTrack = (req,res,db)=>{
 }
 
 const getTrack = (req,res,db)=>{
-	const { id } = req.params
+	const { id } = req.body.id
 
 	db('tracks').returning('*').where({id})
 	.then(tracks=>{
