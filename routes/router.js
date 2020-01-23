@@ -9,7 +9,7 @@ const config = require('../lib/config');
 const db = knex({
   client: 'pg',
   version: '10.4',
-  connection: config.pgMedia || process.env.DATABASE_URL,
+  connection: process.env.DATABASE_URL,
   pool: { min: 0, max: 7 },
   
 });
