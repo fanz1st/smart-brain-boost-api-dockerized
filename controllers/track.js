@@ -4,8 +4,7 @@ const moment = require('moment');
 const createTrack = (req,res,db)=>{
 
     const { user_id , title , artist , album , producer , feat_artist,
-           lyrics, album_art ,genre_id , genre , key , afile , etag, 
-           published } = req.body
+           lyrics, album_art ,genre_ids ,audio} = req.body
 
     const dateTime = moment().format('YYYY-MM-DDTHH:mm:ss')
            
@@ -18,12 +17,8 @@ const createTrack = (req,res,db)=>{
       feat_artist: feat_artist,
       lyrics: lyrics,
       album_art: album_art,
-      genre_id: genre_id,
-      genre: genre,
-      key: key,
-      afile: afile,
-      etag: etag,
-      active: true,
+      genre_ids: genre_ids,
+      audio: audio,
       created_at: dateTime
 
     })
