@@ -6,26 +6,25 @@ const createTrack = (req,res,db)=>{
     const { user_id , title , artist , album , producer , feat_artist,
            lyrics, album_art ,genre_ids ,audio} = req.body
 
-    const dateTime = moment().format('YYYY-MM-DDTHH:mm:ss')
-     res.json(req.body)      
-    // db('tracks').returning('*').insert({
-    //   user_id: user_id,
-    //   title: title,
-    //   artist: artist,
-    //   album: album,
-    //   producer: producer,
-    //   feat_artist: feat_artist,
-    //   lyrics: lyrics,
-    //   album_art: album_art,
-    //   genre_ids: genre_ids,
-    //   audio: audio,
-    //   created_at: dateTime
+    const dateTime = moment().format('YYYY-MM-DDTHH:mm:ss')    
+    db('tracks').returning('*').insert({
+      user_id: user_id,
+      title: title,
+      artist: artist,
+      album: album,
+      producer: producer,
+      feat_artist: feat_artist,
+      lyrics: lyrics,
+      album_art: album_art,
+      genre_ids: genre_ids,
+      audio: audio,
+      created_at: dateTime
 
-    // })
-    // .then(track=>{
-    // 	res.json(track[0])
-    // })
-    // .catch(err=>{ res.status(400).json('could not create track')})
+    })
+    .then(track=>{
+    	res.json(track[0])
+    })
+    .catch(err=>{ res.status(400).json('could not create track')})
 }
 
 const updateTrack = (req,res,db)=>{
