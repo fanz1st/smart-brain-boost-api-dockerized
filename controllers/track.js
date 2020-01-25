@@ -21,7 +21,7 @@ const createTrack = (req,res,db)=>{
       lyrics: lyrics,
       album_art: album_art, 
       audio: audio,
-      genre_ids: knex.raw('genre_ids = ?', genre_ids),
+      genre_ids: '{"' + genre_ids.join('","') + '"}',
       created_at: dateTime
 
     })
