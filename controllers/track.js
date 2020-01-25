@@ -29,7 +29,7 @@ const createTrack = (req,res,db)=>{
       }).then( genres =>{
          res.json(track[0] ,genres[0])
       })
-    	.catch(err=>{ res.status(400).json('could not add genre')})
+    	.catch(err=>{ res.json(req.body)})
     })
     .catch(err=>{ res.status(400).json('could not create track')})
 }
