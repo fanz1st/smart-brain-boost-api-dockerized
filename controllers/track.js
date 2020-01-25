@@ -1,5 +1,5 @@
 const moment = require('moment');
-
+const knex = require('knex');
 
 const createTrack = (req,res,db)=>{
 
@@ -25,7 +25,7 @@ const createTrack = (req,res,db)=>{
     })
     .then(track=>{
       db('tracks').update({
-        genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids),
+        genre_ids: knex.raw('array_append(genre_ids, ?)', genre_ids),
       }).then( genres =>{
          res.json(track[0] ,genres[0])
       })
