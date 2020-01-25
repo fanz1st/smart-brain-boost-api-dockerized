@@ -25,11 +25,11 @@ const createTrack = (req,res,db)=>{
     })
     .then(track=>{
       db('tracks').update({
-        genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids),
+        genre_ids: db.raw('array_append(colName, ?)', genre_ids),
       }).then( genres =>{
          res.json(track[0] ,genres[0])
       })
-    	.catch(err=>{ res.status(400).json('could not create track')})
+    	.catch(err=>{ res.status(400).json('could not add genre')})
     })
     .catch(err=>{ res.status(400).json('could not create track')})
 }
