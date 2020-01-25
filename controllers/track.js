@@ -24,8 +24,8 @@ const createTrack = (req,res,db)=>{
 
     })
     .then(track=>{
-      db('tracks').update({
-        genre_ids: knex.raw('array_append(genre_ids, ?)', genre_ids),
+      db('tracks').where({id: track[0].id}).update({
+        genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids),
       }).then( genres =>{
          res.json(track[0] ,genres[0])
       })
