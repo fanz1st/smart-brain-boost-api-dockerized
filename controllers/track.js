@@ -1,4 +1,6 @@
 const moment = require('moment');
+const knex = require('knex');
+
 
 const createTrack = (req,res,db)=>{
 
@@ -19,7 +21,7 @@ const createTrack = (req,res,db)=>{
       lyrics: lyrics,
       album_art: album_art, 
       audio: audio,
-      genre_ids: db.raw('genre_ids = ?', genre_ids),
+      genre_ids: knex.raw('genre_ids = ?', genre_ids),
       created_at: dateTime
 
     })
