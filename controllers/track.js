@@ -24,7 +24,7 @@ const createTrack = (req,res,db)=>{
 
     })
     .then(track=>{
-         res.json(track[0] ,genres)
+         res.json(track[0])
     })
     .catch(err=>{ res.status(400).json('could not create track')})
 }
