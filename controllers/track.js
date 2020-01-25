@@ -44,12 +44,9 @@ const updateTrack = (req,res,db)=>{
       producer: producer,
       feat_artist: feat_artist,
       lyrics: lyrics,
-      album_art: album_art,
-      genre_id: genre_id,
-      genre: genre,
-      key: key,
-      afile: afile,
-      etag: etag,
+      album_art: album_art, 
+      audio: audio,
+      genre_ids: '{"' + genre_ids.join('","') + '"}',
       updated_at: dateTime
     })
     .then(track=>{
@@ -109,7 +106,7 @@ const createTrackPlay = (req,res,db)=>{
 
 	db.transaction(trx => {
     trx.insert({
-        track_id: track_id,
+    track_id: track_id,
 		user_id: user_id,
 		created_at: dateTime
     })
