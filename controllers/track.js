@@ -19,7 +19,7 @@ const createTrack = (req,res,db)=>{
       lyrics: lyrics,
       album_art: album_art, 
       audio: audio,
-      genre_ids: db.raw('?? = ?', genre_ids),
+      genre_ids: db.raw('genre_ids = ?', genre_ids),
       created_at: dateTime
 
     })
