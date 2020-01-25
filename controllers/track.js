@@ -24,9 +24,9 @@ const createTrack = (req,res,db)=>{
 
     })
     .then(track=>{
-      db('tracks').where({id: track[0].id}).update({
-        genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids),
-      }).then( genres =>{
+      db('tracks').where({id: track[0].id}).update(
+        db.raw('array_append(genre_ids, ?)', genre_ids)
+      ).then( genres =>{
          res.json(track[0] ,genres)
       })
     	.catch(err=>{ res.json(req.body)})
