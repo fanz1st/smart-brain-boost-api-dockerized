@@ -18,14 +18,18 @@ const createTrack = (req,res,db)=>{
       producer: producer,
       feat_artist: feat_artist,
       lyrics: lyrics,
-      album_art: album_art,
-      genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids), 
+      album_art: album_art, 
       audio: audio,
       created_at: dateTime
 
     })
     .then(track=>{
-    	res.json(track[0])
+      db('tracks').update({
+        genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids),
+      }).then( genres =>{
+         res.json(track[0] ,genres[0])
+      })
+    	.catch(err=>{ res.status(400).json('could not create track')})
     })
     .catch(err=>{ res.status(400).json('could not create track')})
 }
