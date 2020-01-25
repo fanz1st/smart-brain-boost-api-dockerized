@@ -6,7 +6,10 @@ const createTrack = (req,res,db)=>{
     const { user_id , title , artist , album , producer , feat_artist,
            lyrics, album_art ,genre_ids ,audio} = req.body
 
-    const dateTime = moment().format('YYYY-MM-DDTHH:mm:ss')    
+    const dateTime = moment().format('YYYY-MM-DDTHH:mm:ss')  
+    
+ 
+
     db('tracks').returning('*').insert({
       user_id: user_id,
       title: title,
@@ -16,7 +19,7 @@ const createTrack = (req,res,db)=>{
       feat_artist: feat_artist,
       lyrics: lyrics,
       album_art: album_art,
-      genre_ids: genre_ids,
+      genre_ids: db.raw('array_append(genre_ids, ?)', genre_ids), 
       audio: audio,
       created_at: dateTime
 
