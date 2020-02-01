@@ -31,6 +31,35 @@ const setupTrackGenres = (req,res,db)=>{
 }
 
 
+const setupPodcastGenres = (req,res,db)=>{
+     let genres = [
+        { name: 'Arts' , color: "#ff3333"},
+        { name: 'Business' , color: "#ff6b33"},
+        { name: 'Comedy' , color: "#ffa833"},
+        { name: 'Education' , color: "#ffe333"},
+        { name: 'Government' , color: "#559a03"},
+        { name: 'Health & Fitness' , color: "#039a55"},
+        { name: 'History' , color: "#039a8f"},
+        { name: 'Kids & Family' , color: "#035c9a"},
+        { name: 'Leisure' , color: "#8575b5"},
+        { name: 'Music' , color: "#b5759e"},
+        { name: 'News' , color: "#b57579"},
+        { name: 'Religion & Sprituality' , color: "#f97878"},
+        { name: 'Science' , color: "#d8f978"},
+        { name: 'Society & Culture' , color: " #fd9703"},
+        { name: 'Technology' , color: "#c1c1c2"},
+        { name: 'True Crime' , color: "#5fb974"},
+        { name: 'TV & Film', color: "#5fb974"}
+    ];
+
+    db('podcast_genres').returning('*').insert(genres)
+    .then(genre=>{
+        res.json(genre)
+    })
+    .catch(err=>{res.status(400).json('could not create podcast genres ')})
+}
+
+
 const getGenreTracks = (req,res,db)=>{
 	const { genre_id } = req.params
 
@@ -49,9 +78,18 @@ const getGenres = ( req,res,db) =>{
     .catch(err=>{ res.status(400).json("could not get genres")})
 }
 
+const getPodcastGenres = ( req,res,db) =>{
+    db('podcast_genres').returning('*')
+    .then(genres=>{
+        res.json(genres)
+    })
+    .catch(err=>{ res.status(400).json("could not get genres")})
+}
+
 
 
 
 module.exports = {
-   setupTrackGenres, getGenreTracks , getGenres
+   setupTrackGenres, getGenreTracks , getGenres,
+   setupPodcastGenres ,getPodcastGenres
 }

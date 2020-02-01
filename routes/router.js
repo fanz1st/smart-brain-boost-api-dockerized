@@ -97,8 +97,10 @@ module.exports = function(io) {
 
      // Genres
      route.post('/setup_genres', (req,res)=>{ genre.setupTrackGenres(req,res,db)})
+     route.post('/setup_podcastgenres', (req,res)=>{ genre.setupPodcastGenres(req,res,db)})
      route.get('/genre/tracks/:genre_id', (req,res)=>{ genre.getGenreTracks(req,res,db)})
      route.get('/genres', (req,res)=>{ genre.getGenres(req,res,db)})
+     route.get('/podcast/genres', (req,res)=>{ genre.getPodcastGenres(req,res,db)})
 
      // Images
      route.post('/images', (req,res)=>{ image.createImage(req,res,db)})
