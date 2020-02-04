@@ -31,7 +31,7 @@ const playlist = require('../controllers/playlist');
 const post = require('../controllers/post');
 const track = require('../controllers/track');
 const video = require('../controllers/video');
-
+const podcast = require('../controllers/podcast');
 
 
 
@@ -155,6 +155,10 @@ module.exports = function(io) {
      route.get('/new_track', (req,res)=>{ track.newTracks(req,res,db)})
      route.get('/most_played_tracks', (req,res)=>{ track.mostPlayedTracks(req,res,db)})
      route.get('/week_top_tracks', (req,res)=>{ track.weekTopTracks(req,res,db)})
+
+
+     // Podcast 
+     route.post('/podcasts' , (req,res)=>{ podcast.createPodcast(req,res,db)})
 
      // Videos
 
