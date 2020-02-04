@@ -18,7 +18,7 @@ const createPodcast = (req,res,db)=>{
      })
      .into('podcasts')
      .then(podcast=>{
-         episodes.forEach((episode)=>{ episode.podcast_id = podcast[0].id ,created_at: dateTime})
+         episodes.forEach((episode)=>{ episode.podcast_id = podcast[0].id ,created_at =  dateTime})
          return trx('episodes').insert(episodes).transacting(trx)
      })
      .then(trx.commit)
