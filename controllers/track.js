@@ -91,7 +91,7 @@ const getTrack = (req,res,db)=>{
 }
 
 const getUserTracks = (req,res,db)=>{
-	const { user_id } = req.params
+	const { user_id , page } = req.body
 
 	db('tracks').returning('*').where({user_id})
 	.then(tracks=>{
