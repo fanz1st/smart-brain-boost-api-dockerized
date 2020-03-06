@@ -3,12 +3,11 @@ const app = express();
 const https = require('http');
 const fs = require('fs');
 const path = require('path');
-const io = require('socket.io')(https);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
-const routes = require('./routes/router')(io);
+const routes = require('./routes/router');
 
 
 const whitelist = ['*']

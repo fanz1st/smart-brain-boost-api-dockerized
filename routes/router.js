@@ -9,7 +9,7 @@ const config = require('../lib/config');
 const db = knex({
   client: 'pg',
   version: '10.4',
-  connection: process.env.DATABASE_URL,
+  connection: process.env.DATABASE_URL || config.pgMedia,
   pool: { min: 0, max: 7 },
   
 });
@@ -159,7 +159,7 @@ module.exports = function(io) {
 
      // Podcast 
      route.post('/podcasts' , (req,res)=>{ podcast.createPodcast(req,res,db)})
-
+     route.put('/podcast/:id' , (req,res)=>{ podcast.updatePodcast(req,res,db)})
      // Videos
 
      route.post('/videos', (req,res)=>{ video.createVideo(req,res,db)})
